@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 dotenv.config();
 import {graphqlHTTP} from "express-graphql";
@@ -14,6 +15,7 @@ const app = express();
 // Connect to database
 connectDB();
 
+app.use(cors());
 app.use("/graphql", graphqlHTTP({
     schema,
     graphiql: process.env.NODE_ENV === "development",
